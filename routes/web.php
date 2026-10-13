@@ -55,3 +55,14 @@ Route::redirect('/beranda', '/');
 Route::fallback(function () {
     return response('Halaman tidak ditemukan (kustom).', 404);
 });
+
+use App\Http\Controllers\ProdukController;
+
+// Route untuk halaman daftar produk
+Route::get('/produk', [ProdukController::class, 'index'])->name('produk.index');
+
+// Route untuk halaman detail produk dengan parameter {id}
+Route::get('/produk/{id}', [ProdukController::class, 'show'])->name('produk.show');
+
+// Alternatif: Route resource otomatis membuat 7 route CRUD sekaligus
+// Route::resource('produk', ProdukController::class);
